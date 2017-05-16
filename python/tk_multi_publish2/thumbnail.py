@@ -79,6 +79,10 @@ class Thumbnail(QtGui.QLabel):
         self.window().hide()
         try:
             pixmap = screen_grab.ScreenGrabber.screen_capture()
+        except Exception, e:
+            import traceback
+            error = traceback.format_exc()
+            self._bundle.log_error(error)
         finally:
             self.window().show()
 
